@@ -1,0 +1,5 @@
+0.10_01 - Thu Apr  3 11:52:55 2008
+	* This is the initial version of my module to extract module versions
+	without running module code. I stole most of it from PAUSE's 
+	mldistwatch.
+
