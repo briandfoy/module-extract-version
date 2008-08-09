@@ -3,3 +3,8 @@
 	without running module code. I stole most of it from PAUSE's 
 	mldistwatch.
 
+0.11 - Sat Aug  9 09:01:29 2008
+	* Bumping this to a release version
+	* CPAN Testers seems to like it
+	* If you find pathological cases, please let me know about them
+
