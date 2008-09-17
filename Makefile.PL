@@ -16,6 +16,12 @@ WriteMakefile(
 		'Test::More' => '0',
 		},
 
+	'META_MERGE'   => {
+		no_index => {
+			directory => [ qw(t inc corpus) ],
+			}
+		},
+		
 	'PM'           => {
 		'lib/VERSION.pm'         => '$(INST_LIBDIR)/VERSION.pm',
 		},

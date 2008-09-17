@@ -10,7 +10,7 @@ use vars qw($VERSION);
 
 use Carp qw(carp);
 
-$VERSION = '0.11';
+$VERSION = '0.12';
 
 =head1 NAME
 
@@ -21,6 +21,10 @@ Module::Extract::VERSION - Extract a module version without running code
 	use Module::Extract::VERSION;
 
 =head1 DESCRIPTION
+
+This module lets you pull out of module source code the version number
+for the module. It assumes that there is only one C<$VERSION>
+in the file.
 
 =cut
 
@@ -101,21 +105,11 @@ sub _eval_version
 
 =back
 
-=head1 TO DO
-
-
-=head1 SEE ALSO
-
-
 =head1 SOURCE AVAILABILITY
 
-This source is part of a SourceForge project which always has the
-latest sources in CVS, as well as all of the previous releases.
+This code is in Github:
 
-	http://sourceforge.net/projects/brian-d-foy/
-
-If, for some reason, I disappear from the world, one of the other
-members of the project can shepherd this module appropriately.
+	git://github.com/briandfoy/module-extract-version.git
 
 =head1 AUTHOR
 
