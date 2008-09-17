@@ -3,6 +3,11 @@
 	without running module code. I stole most of it from PAUSE's 
 	mldistwatch.
 
+0.12 - Tue Sep 16 21:55:13 2008
+	* Moved everything ot git
+	* Added corpus to the no_index bit of META.yml by using
+	the latest features of ExtUtils::MakeMaker
+
 0.11 - Sat Aug  9 09:01:29 2008
 	* Bumping this to a release version
 	* CPAN Testers seems to like it
