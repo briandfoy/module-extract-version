@@ -1,10 +1,6 @@
-0.10_01 - Thu Apr  3 11:52:55 2008
-	* This is the initial version of my module to extract module versions
-	without running module code. I stole most of it from PAUSE's 
-	mldistwatch.
 
 0.12 - Tue Sep 16 21:55:13 2008
-	* Moved everything ot git
+	* Moved everything to git
 	* Added corpus to the no_index bit of META.yml by using
 	the latest features of ExtUtils::MakeMaker
 
@@ -12,4 +8,9 @@
 	* Bumping this to a release version
 	* CPAN Testers seems to like it
 	* If you find pathological cases, please let me know about them
+
+0.10_01 - Thu Apr  3 11:52:55 2008
+	* This is the initial version of my module to extract module versions
+	without running module code. I stole most of it from PAUSE's 
+	mldistwatch.
 
