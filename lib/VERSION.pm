@@ -10,7 +10,7 @@ use vars qw($VERSION);
 
 use Carp qw(carp);
 
-$VERSION = '0.12';
+$VERSION = '0.13';
 
 =head1 NAME
 
@@ -38,6 +38,15 @@ Given a module file, return the module version. This works just like
 C<mldistwatch> in PAUSE. It looks for the single line that has the
 C<$VERSION> statement, extracts it, evals it, and returns the result.
 
+In scalar context, it returns just the version as a string. In list
+context, it returns the list of:
+
+	sigil
+	fully-qualified variable name
+	version value
+	file name
+	line number of $VERSION
+
 =cut
 
 sub parse_version_safely # stolen from PAUSE's mldistwatch, but refactored
@@ -56,23 +65,28 @@ sub parse_version_safely # stolen from PAUSE's mldistwatch, but refactored
 		}
 	
 	my $in_pod = 0;
-	my $version;
+	my( $sigil, $var, $version, $line_number );
 	while( <$fh> ) 
 		{
+		$line_number++;
+		#print STDERR "Read: $_";
 		chomp;
 		$in_pod = /^=(?!cut)/ ? 1 : /^=cut/ ? 0 : $in_pod;
 		next if $in_pod || /^\s*#/;
 
 		next unless /([\$*])(([\w\:\']*)\bVERSION)\b.*\=/;
-		my( $sigil, $var ) = ( $1, $2 );
+		( $sigil, $var ) = ( $1, $2 );
+		
+		#print STDERR "Got $1 and $2\n";
 		
 		$version = $class->_eval_version( $_, $sigil, $var );
 
 		last;
 		}
+	$line_number = undef if eof($fh) && ! defined( $version );
 	close $fh;
-
-	return $version;
+	
+	return wantarray ? ( $sigil, $var, $version, $file, $line_number ) : $version;
 	}
 
 sub _eval_version
@@ -81,7 +95,7 @@ sub _eval_version
 	
 	my( $line, $sigil, $var ) = @_;
 	
-	#print STDERR "Called with @_\n";
+	#print STDERR "_eval_version called with @_\n";
 	
 	my $eval = qq{ 
 		package ExtUtils::MakeMaker::_version;
