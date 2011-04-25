@@ -9,7 +9,9 @@ use vars qw($VERSION);
 
 use Carp qw(carp);
 
-$VERSION = '0.13';
+BEGIN {
+	our $VERSION = '0.13';
+}
 
 =head1 NAME
 
