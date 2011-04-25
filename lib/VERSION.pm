@@ -1,5 +1,6 @@
 # $Id$
 package Module::Extract::VERSION;
+use 5.006;
 use strict;
 
 use warnings;
