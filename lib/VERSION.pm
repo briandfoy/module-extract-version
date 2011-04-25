@@ -20,6 +20,9 @@ Module::Extract::VERSION - Extract a module version without running code
 =head1 SYNOPSIS
 
 	use Module::Extract::VERSION;
+	my $version
+		= Module::Extract::VERSION->parse_version_safely( 'MyModule.pm' );
+	print "$version\n";
 
 =head1 DESCRIPTION
 
