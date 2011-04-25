@@ -3,7 +3,6 @@ package Module::Extract::VERSION;
 use strict;
 
 use warnings;
-no warnings;
 
 use subs qw();
 use vars qw($VERSION);
