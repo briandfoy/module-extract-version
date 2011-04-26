@@ -19,6 +19,12 @@ Module::Extract::VERSION - Extract a module version without running code
 
 	use Module::Extract::VERSION;
 
+	my $version   # just the version
+		= Module::Extract::VERSION->parse_version_safely( $file );
+
+	my @version_info # extra info
+		= Module::Extract::VERSION->parse_version_safely( $file );
+
 =head1 DESCRIPTION
 
 This module lets you pull out of module source code the version number
