@@ -134,7 +134,7 @@ code by Andreas KE<ouml>nig, but I've moved most of it around.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2008, brian d foy, All Rights Reserved.
+Copyright (c) 2008-2011, brian d foy, All Rights Reserved.
 
 You may redistribute this under the same terms as Perl itself.
 
