@@ -1,16 +1,17 @@
 # $Id$
 package Module::Extract::VERSION;
+use 5.006;
 use strict;
-
 use warnings;
-no warnings;
 
 use subs qw();
 use vars qw($VERSION);
 
 use Carp qw(carp);
 
-$VERSION = '0.13';
+BEGIN {
+	our $VERSION = '0.13';
+}
 
 =head1 NAME
 
@@ -19,6 +20,9 @@ Module::Extract::VERSION - Extract a module version without running code
 =head1 SYNOPSIS
 
 	use Module::Extract::VERSION;
+	my $version
+		= Module::Extract::VERSION->parse_version_safely( 'MyModule.pm' );
+	print "$version\n";
 
 =head1 DESCRIPTION
 
