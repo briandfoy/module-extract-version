@@ -1,3 +1,5 @@
+require v5.10;
+
 package Module::Extract::VERSION;
 use strict;
 
@@ -70,7 +72,7 @@ sub parse_version_safely # stolen from PAUSE's mldistwatch, but refactored
 		}
 	
 	my $in_pod = 0;
-	my( $sigil, $var, $version, $line_number );
+	my( $sigil, $var, $version, $line_number, $rhs );
 	while( <$fh> ) 
 		{
 		$line_number++;
@@ -79,12 +81,27 @@ sub parse_version_safely # stolen from PAUSE's mldistwatch, but refactored
 		$in_pod = /^=(?!cut)/ ? 1 : /^=cut/ ? 0 : $in_pod;
 		next if $in_pod || /^\s*#/;
 
-		next unless /([\$*])(([\w\:\']*)\bVERSION)\b.*\=/;
-		( $sigil, $var ) = ( $1, $2 );
+		next unless /
+			(?<sigil>
+				[\$*]
+			)
+			(?<identifier>
+				(?<package>
+					[\w\:\']*
+				)
+				\b
+				VERSION
+			)
+			\b
+			.*?
+			\=
+			(?<rhs>
+				.*
+			)
+			/x;
+		( $sigil, $var, $rhs ) = @+{ qw(sigil var rhs) };
 		
-		#print STDERR "Got $1 and $2\n";
-		
-		$version = $class->_eval_version( $_, $sigil, $var );
+		$version = $class->_eval_version( $_, @+{ qw(sigil var rhs) } );
 
 		last;
 		}
