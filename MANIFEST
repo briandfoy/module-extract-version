@@ -1,8 +1,8 @@
 Changes
 corpus/Easy.pm
 corpus/RCS.pm
-corpus/Underscore.pm
 corpus/ToTk.pm
+corpus/Underscore.pm
 examples/placeholder.pl
 lib/Module/Extract/VERSION.pm
 LICENSE
