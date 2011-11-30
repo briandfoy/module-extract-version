@@ -31,7 +31,7 @@ Module::Extract::VERSION - Extract a module version safely
 
 This module lets you pull out of module source code the version number
 for the module. It assumes that there is only one C<$VERSION>
-in the file.
+in the file and the entire C<$VERSION> statement is on the same line.
 
 =cut
 
@@ -43,7 +43,8 @@ in the file.
 
 Given a module file, return the module version. This works just like
 C<mldistwatch> in PAUSE. It looks for the single line that has the
-C<$VERSION> statement, extracts it, evals it, and returns the result.
+C<$VERSION> statement, extracts it, evals it in a Safe compartment,
+and returns the result.
 
 In scalar context, it returns just the version as a string. In list
 context, it returns the list of:
@@ -113,28 +114,17 @@ sub parse_version_safely # stolen from PAUSE's mldistwatch, but refactored
 
 sub _eval_version
 	{
-	my $class = shift;
-	
-	my( $line, $sigil, $var ) = @_;
-	
-	#print STDERR "_eval_version called with @_\n";
-	
-	my $eval = qq{ 
-		package ExtUtils::MakeMaker::_version;
+	my( $class, $line, $sigil, $var, $rhs ) = @_;
 
-		local $sigil$var;
-		\$$var=undef; do {
-			$line
-			}; \$$var
-		};
-		
-	my $version = do {
-		local $^W = 0;
-		no strict;
-		eval( $eval );
-		};
+	require Safe;
+	require version;
+	local $^W = 0;
 
-	#print STDERR "Version is $version\n";
+	my $s = Safe->new;
+	$s->share_from('main', ['*version::']);
+	$s->share_from('version', ['&qv']);
+	$s->reval('$VERSION = ' . $rhs);
+	my $version = $s->reval('$VERSION');
 
 	return $version;
 	}
