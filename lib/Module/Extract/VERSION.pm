@@ -11,11 +11,11 @@ use vars qw($VERSION);
 
 use Carp qw(carp);
 
-$VERSION = '1.01';
+$VERSION = '1.10_01';
 
 =head1 NAME
 
-Module::Extract::VERSION - Extract a module version without running code
+Module::Extract::VERSION - Extract a module version safely
 
 =head1 SYNOPSIS
 
