@@ -57,27 +57,22 @@ context, it returns the list of:
 
 =cut
 
-sub parse_version_safely # stolen from PAUSE's mldistwatch, but refactored
-	{
-	my $class = shift;
-	my $file = shift;
+sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
+	my( $class, $file ) = @_;
 	
 	local $/ = "\n";
 	local $_; # don't mess with the $_ in the map calling this
 	
 	my $fh;
-	unless( open $fh, "<", $file )
-		{
+	unless( open $fh, "<", $file ) {
 		carp( "Could not open file [$file]: $!\n" );
 		return;
 		}
 	
 	my $in_pod = 0;
 	my( $sigil, $var, $version, $line_number, $rhs );
-	while( <$fh> ) 
-		{
+	while( <$fh> ) {
 		$line_number++;
-		#print STDERR "Read: $_";
 		chomp;
 		$in_pod = /^=(?!cut)/ ? 1 : /^=cut/ ? 0 : $in_pod;
 		next if $in_pod || /^\s*#/;
@@ -109,11 +104,13 @@ sub parse_version_safely # stolen from PAUSE's mldistwatch, but refactored
 	$line_number = undef if eof($fh) && ! defined( $version );
 	close $fh;
 	
-	return wantarray ? ( $sigil, $var, $version, $file, $line_number ) : $version;
+	return wantarray ? 
+		( $sigil, $var, $version, $file, $line_number ) 
+			: 
+		$version;
 	}
 
-sub _eval_version
-	{
+sub _eval_version {
 	my( $class, $line, $sigil, $var, $rhs ) = @_;
 
 	require Safe;
