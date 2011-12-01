@@ -4,3 +4,4 @@ Module-*
 Makefile
 *.old
 *.bak
+MYMETA.yml

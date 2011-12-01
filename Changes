@@ -1,4 +1,8 @@
 
+1.10_01 - Tue Nov 29 22:33:59 2011
+	* Use a safe compartment
+	* Require Perl 5.10 so I can use named captures.
+
 1.01 - Tue Apr 26 05:08:52 2011
 	* Bump to a full release version. The module isn't going to
 	change that much now.
