@@ -24,4 +24,15 @@ WriteMakefile(
 		},
 
 	clean  => { FILES    => q|Module-Extract-VERSION-*| },
+
+	META_MERGE => {
+		'meta-spec' => { version => 2 },
+		resources => {
+			repository => {
+				type => 'git',
+				url  => 'https://github.com/briandfoy/module-extract-version.git',
+				web  => 'https://github.com/briandfoy/module-extract-version',
+			},
+		},
+	},
 	);
