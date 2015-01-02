@@ -1,4 +1,4 @@
-use ExtUtils::MakeMaker;
+use ExtUtils::MakeMaker 6.46;
 
 require v5.10;
 
@@ -12,7 +12,7 @@ WriteMakefile(
 	'AUTHOR'       => 'brian d foy <bdfoy@cpan.org>',
 	
 	'PREREQ_PM'    => { 
-		'Test::More'              => '0',
+		'Test::More'              => '0.95',
 		'Tie::Hash::NamedCapture' => '0', # for named captures
 		'version'                 => '0',
 		},
