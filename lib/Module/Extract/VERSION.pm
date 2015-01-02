@@ -11,7 +11,7 @@ use vars qw($VERSION);
 
 use Carp qw(carp);
 
-$VERSION = '1.10_02';
+$VERSION = '1.11';
 
 =head1 NAME
 
@@ -143,7 +143,7 @@ code by Andreas KE<ouml>nig, but I've moved most of it around.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2008-2011, brian d foy, All Rights Reserved.
+Copyright (c) 2008-2015, brian d foy, All Rights Reserved.
 
 You may redistribute this under the same terms as Perl itself.
 
