@@ -1,4 +1,4 @@
-# Changes to Module::Extract::Version
+Revision history for Perl module Module::Extract::Version
 
 1.01 - Tue Apr 26 05:08:52 2011
 	* Bump to a full release version. The module isn't going to
