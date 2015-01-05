@@ -1,7 +1,4 @@
-
-1.10_01 - Tue Nov 29 22:33:59 2011
-	* Use a safe compartment
-	* Require Perl 5.10 so I can use named captures.
+# Changes to Module::Extract::Version
 
 1.01 - Tue Apr 26 05:08:52 2011
 	* Bump to a full release version. The module isn't going to
@@ -23,4 +20,9 @@
 	* This is the initial version of my module to extract module versions
 	without running module code. I stole most of it from PAUSE's
 	mldistwatch.
+
+1.10_01 - Tue Nov 29 22:33:59 2011
+	* Use a safe compartment
+	* Require Perl 5.10 so I can use named captures.
+
 
