@@ -1,36 +1,52 @@
+require v5.10;
 use strict;
 use warnings;
 
-require v5.10;
+use File::Spec::Functions qw(catfile);
 
-my $github    = 'https://github.com/briandfoy/';
-my $main_file = 'lib/';
+my $module    = 'Module::Extract::VERSION';
+my $github    = 'https://github.com/briandfoy/module-extract-version';
+my $main_file = catfile( 'lib', split /::/, "$module.pm" );
 
 my %WriteMakefile = (
-	'NAME'	        => 'Module::Extract::VERSION',
+	'NAME'	        => $module,
 	'ABSTRACT_FROM' => $main_file,
 	'VERSION_FROM'  => 'lib/Module/Extract/VERSION.pm',
 	'LICENSE'       => 'perl',
 	'AUTHOR'        => 'brian d foy <bdfoy@cpan.org>',
-	
-	'PREREQ_PM'    => { 
-		'Test::More'              => '0.95',
+
+	'CONFIGURE_REQUIRES' => {
+		'ExtUtils::MakeMaker'   => '6.64',
+		},
+
+	'BUILD_REQUIRES' => {
+		},
+
+	'TEST_REQUIRES' => {
+		'Test::More' => '0.95',
+		},
+
+	'PREREQ_PM'     => {
 		'Tie::Hash::NamedCapture' => '0', # for named captures
 		'version'                 => '0',
 		},
 
-	clean  => { FILES    => q|Module-Extract-VERSION-*| },
-
-	META_MERGE => {
+	'META_MERGE' => {
 		'meta-spec' => { version => 2 },
 		resources => {
 			repository => {
 				type => 'git',
-				url  => 'https://github.com/briandfoy/module-extract-version.git',
-				web  => 'https://github.com/briandfoy/module-extract-version',
+				url  => "$github.git",
+				web  => $github,
+				},
+			bugtraker => {
+				web    => "$github/issues",
+				},
+			homepage => $github,
 			},
 		},
-	},
+	
+	clean  => { FILES    => q|Module-Extract-VERSION-*| },
 	);
 
 sub arguments { \%WriteMakefile }
