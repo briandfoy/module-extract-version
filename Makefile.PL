@@ -1,17 +1,19 @@
 require v5.10;
+
+package Module::Extract::VERSION;
 use strict;
 use warnings;
 
 use File::Spec::Functions qw(catfile);
 
-my $module    = 'Module::Extract::VERSION';
+my $module    = __PACKAGE__;
 my $github    = 'https://github.com/briandfoy/module-extract-version';
 my $main_file = catfile( 'lib', split /::/, "$module.pm" );
 
 my %WriteMakefile = (
 	'NAME'	        => $module,
 	'ABSTRACT_FROM' => $main_file,
-	'VERSION_FROM'  => 'lib/Module/Extract/VERSION.pm',
+	'VERSION_FROM'  => $main_file,
 	'LICENSE'       => 'perl',
 	'AUTHOR'        => 'brian d foy <bdfoy@cpan.org>',
 
