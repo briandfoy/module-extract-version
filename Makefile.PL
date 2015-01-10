@@ -1,10 +1,12 @@
 require v5.10;
+
+package Module::Extract::VERSION;
 use strict;
 use warnings;
 
 use File::Spec::Functions qw(catfile);
 
-my $module    = 'Module::Extract::VERSION';
+my $module    = __PACKAGE__;
 ( my $dist = $module ) =~ s/::/-/g;
 
 my $github    = 'https://github.com/briandfoy/module-extract-version';
