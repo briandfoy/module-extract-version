@@ -13,6 +13,8 @@ my $github    = 'https://github.com/briandfoy/module-extract-version';
 my $main_file = catfile( 'lib', split /::/, "$module.pm" );
 
 my %WriteMakefile = (
+	'MIN_PERL_VERSION' => '5.010',
+
 	'NAME'	        => $module,
 	'ABSTRACT_FROM' => $main_file,
 	'VERSION_FROM'  => 'lib/Module/Extract/VERSION.pm',
