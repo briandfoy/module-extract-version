@@ -13,6 +13,8 @@ use Carp qw(carp);
 
 $VERSION = '1.11';
 
+=encoding utf8
+
 =head1 NAME
 
 Module::Extract::VERSION - Extract a module version safely
@@ -59,16 +61,16 @@ context, it returns the list of:
 
 sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 	my( $class, $file ) = @_;
-	
+
 	local $/ = "\n";
 	local $_; # don't mess with the $_ in the map calling this
-	
+
 	my $fh;
 	unless( open $fh, "<", $file ) {
 		carp( "Could not open file [$file]: $!\n" );
 		return;
 		}
-	
+
 	my $in_pod = 0;
 	my( $sigil, $var, $version, $line_number, $rhs );
 	while( <$fh> ) {
@@ -96,17 +98,17 @@ sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 			)
 			/x;
 		( $sigil, $var, $rhs ) = @+{ qw(sigil var rhs) };
-		
+
 		$version = $class->_eval_version( $_, @+{ qw(sigil var rhs) } );
 
 		last;
 		}
 	$line_number = undef if eof($fh) && ! defined( $version );
 	close $fh;
-	
-	return wantarray ? 
-		( $sigil, $var, $version, $file, $line_number ) 
-			: 
+
+	return wantarray ?
+		( $sigil, $var, $version, $file, $line_number )
+			:
 		$version;
 	}
 
