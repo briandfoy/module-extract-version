@@ -11,7 +11,9 @@ use vars qw($VERSION);
 
 use Carp qw(carp);
 
-$VERSION = '1.10_02';
+$VERSION = '1.11';
+
+=encoding utf8
 
 =head1 NAME
 
@@ -59,16 +61,16 @@ context, it returns the list of:
 
 sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 	my( $class, $file ) = @_;
-	
+
 	local $/ = "\n";
 	local $_; # don't mess with the $_ in the map calling this
-	
+
 	my $fh;
 	unless( open $fh, "<", $file ) {
 		carp( "Could not open file [$file]: $!\n" );
 		return;
 		}
-	
+
 	my $in_pod = 0;
 	my( $sigil, $var, $version, $line_number, $rhs );
 	while( <$fh> ) {
@@ -96,17 +98,17 @@ sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 			)
 			/x;
 		( $sigil, $var, $rhs ) = @+{ qw(sigil var rhs) };
-		
+
 		$version = $class->_eval_version( $_, @+{ qw(sigil var rhs) } );
 
 		last;
 		}
 	$line_number = undef if eof($fh) && ! defined( $version );
 	close $fh;
-	
-	return wantarray ? 
-		( $sigil, $var, $version, $file, $line_number ) 
-			: 
+
+	return wantarray ?
+		( $sigil, $var, $version, $file, $line_number )
+			:
 		$version;
 	}
 
@@ -143,7 +145,7 @@ code by Andreas KE<ouml>nig, but I've moved most of it around.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2008-2011, brian d foy, All Rights Reserved.
+Copyright © 2008-2015, brian d foy <bdfoy@cpan.org>. All rights reserved.
 
 You may redistribute this under the same terms as Perl itself.
 
