@@ -2,7 +2,6 @@ use strict;
 use warnings;
 
 use File::Spec;
-use FindBin;
 
 use Test::More 'no_plan';
 
@@ -23,7 +22,7 @@ if ($] >= 5.012) {
 	
 foreach my $file ( sort keys %Corpus )
 	{
-	my $path = File::Spec->catfile( $FindBin::Bin, qw( .. corpus ), $file );
+	my $path = File::Spec->catfile( 'corpus', $file );
 	ok( -e $path, "Corpus file [ $path ] exists" );
 	
 	my $version = 
