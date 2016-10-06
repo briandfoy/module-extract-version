@@ -9,10 +9,10 @@ use_ok( 'Module::Extract::VERSION' );
 can_ok( 'Module::Extract::VERSION', qw(parse_version_safely) );
 
 my %Corpus = (
-	'Easy.pm'       => 3.01,   
-	'RCS.pm'        => 1.23,   
-	'Underscore.pm' => "0.10_01",
-	'ToTk.pm'       => undef,
+	'Easy.pm'        => 3.01,
+	'RCSKeywords.pm' => 1.23,
+	'Underscore.pm'  => "0.10_01",
+	'ToTk.pm'        => undef,
 	);
 
 if ($] >= 5.012) {
