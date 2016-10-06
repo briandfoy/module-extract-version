@@ -14,6 +14,11 @@ my %Corpus = (
 	'Underscore.pm' => "0.10_01",
 	'ToTk.pm'       => undef,
 	);
+
+if ($] >= 5.012) {
+  $Corpus{ 'Easy_5_12.pm' } = '3.01';
+  $Corpus{ 'Dotted_5_12.pm' } = 'v0.10.01';
+}
 	
 foreach my $file ( sort keys %Corpus )
 	{
