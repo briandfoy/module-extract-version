@@ -122,6 +122,9 @@ sub _eval_version {
 	my $s = Safe->new;
 	$s->share_from('main', ['*version::']);
 	$s->share_from('version', ['&qv']);
+	if (defined $Devel::Cover::VERSION) {
+		$s->share_from('main', ['&Devel::Cover::use_file']);
+	}
 	$s->reval('$VERSION = ' . $rhs);
 	my $version = $s->reval('$VERSION');
 
