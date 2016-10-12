@@ -3,7 +3,7 @@ use warnings;
 
 use File::Spec;
 
-use Test::More 'no_plan';
+use Test::More 0.95;
 
 use_ok( 'Module::Extract::VERSION' );
 can_ok( 'Module::Extract::VERSION', qw(parse_version_safely) );
@@ -31,3 +31,5 @@ foreach my $file ( sort keys %Corpus )
 	is( $version, $Corpus{$file}, "Works for $file" );
 	
 	}
+
+done_testing();
