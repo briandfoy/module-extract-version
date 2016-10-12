@@ -1,7 +1,8 @@
 Changes
 corpus/Dotted_5_12.pm
-corpus/Easy_5_12.pm
+corpus/Dotted_5_12_braces.pm
 corpus/Easy.pm
+corpus/Easy_5_12.pm
 corpus/RCSKeywords.pm
 corpus/ToTk.pm
 corpus/Underscore.pm

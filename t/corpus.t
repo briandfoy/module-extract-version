@@ -15,21 +15,21 @@ my %Corpus = (
 	'ToTk.pm'        => undef,
 	);
 
-if ($] >= 5.012) {
-  $Corpus{ 'Easy_5_12.pm' } = '3.01';
-  $Corpus{ 'Dotted_5_12.pm' } = 'v0.10.01';
-}
-	
-foreach my $file ( sort keys %Corpus )
-	{
+if( $] >= 5.012 ) {
+	$Corpus{ 'Easy_5_12.pm' }          = '3.01';
+	$Corpus{ 'Dotted_5_12.pm' }        = 'v0.10.01';
+	$Corpus{ 'Dotted_5_12_braces.pm' } = 'v0.10.01';
+	}
+
+foreach my $file ( sort keys %Corpus ) {
 	my $path = File::Spec->catfile( 'corpus', $file );
 	ok( -e $path, "Corpus file [ $path ] exists" );
-	
-	my $version = 
+
+	my $version =
 		eval{ Module::Extract::VERSION->parse_version_safely( $path ) };
-		
+
 	is( $version, $Corpus{$file}, "Works for $file" );
-	
+
 	}
 
 done_testing();
