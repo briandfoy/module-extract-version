@@ -83,7 +83,7 @@ sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 			(?<sigil>
 				[\$*]
 			)
-			(?<identifier>
+			(?<var>
 				(?<package>
 					[\w\:\']*
 				)
@@ -96,10 +96,20 @@ sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 			(?<rhs>
 				.*
 			)
+			/x ||
+			m/
+			\b package \s+
+			(?<package> \w[\w\:\']* ) \s+
+			(?<rhs> \S+ ) \s* ;
 			/x;
 		( $sigil, $var, $rhs ) = @+{ qw(sigil var rhs) };
 
-		$version = $class->_eval_version( $_, @+{ qw(sigil var rhs) } );
+		if ($sigil) {
+			$version = $class->_eval_version( $_, @+{ qw(sigil var rhs) } );
+		}
+		else {
+			$version = $class->_eval_version( $_, '$', 'VERSION', qq('$rhs') );
+		}
 
 		last;
 		}
@@ -122,6 +132,9 @@ sub _eval_version {
 	my $s = Safe->new;
 	$s->share_from('main', ['*version::']);
 	$s->share_from('version', ['&qv']);
+	if (defined $Devel::Cover::VERSION) {
+		$s->share_from('main', ['&Devel::Cover::use_file']);
+	}
 	$s->reval('$VERSION = ' . $rhs);
 	my $version = $s->reval('$VERSION');
 

@@ -1,5 +1,8 @@
 Changes
+corpus/Dotted_5_12.pm
+corpus/Easy_5_12.pm
 corpus/Easy.pm
+corpus/RCSKeywords.pm
 corpus/ToTk.pm
 corpus/Underscore.pm
 examples/placeholder.pl
