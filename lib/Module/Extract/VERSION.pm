@@ -79,6 +79,9 @@ sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 		$in_pod = /^=(?!cut)/ ? 1 : /^=cut/ ? 0 : $in_pod;
 		next if $in_pod || /^\s*#/;
 
+		# package NAMESPACE VERSION  <-- we handle that
+		# package NAMESPACE VERSION BLOCK
+
 		next unless /
 			(?<sigil>
 				[\$*]
