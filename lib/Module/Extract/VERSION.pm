@@ -100,7 +100,7 @@ sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 			m/
 			\b package \s+
 			(?<package> \w[\w\:\']* ) \s+
-			(?<rhs> \S+ ) \s* ;
+			(?<rhs> \S+ ) \s* [;{]
 			/x;
 		( $sigil, $var, $rhs ) = @+{ qw(sigil var rhs) };
 
