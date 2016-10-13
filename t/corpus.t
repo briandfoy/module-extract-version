@@ -3,7 +3,7 @@ use warnings;
 
 use File::Spec;
 
-use Test::More 'no_plan';
+use Test::More 0.95;
 
 use_ok( 'Module::Extract::VERSION' );
 can_ok( 'Module::Extract::VERSION', qw(parse_version_safely) );
@@ -21,17 +21,20 @@ if ($] >= 5.012) {
 }
 
 if ($] >= 5.014) {
-	$Corpus{ 'Easy_5_14.pm' } = '3.01';
+	$Corpus{ 'Easy_5_14_braces.pm' } = '3.01';
+	$Corpus{ 'Dotted_5_14_braces.pm' } = 'v0.10.01';
 }
 	
 foreach my $file ( sort keys %Corpus )
 	{
 	my $path = File::Spec->catfile( 'corpus', $file );
 	ok( -e $path, "Corpus file [ $path ] exists" );
-	
-	my $version = 
+
+	my $version =
 		eval{ Module::Extract::VERSION->parse_version_safely( $path ) };
-		
+
 	is( $version, $Corpus{$file}, "Works for $file" );
-	
+
 	}
+
+done_testing();
