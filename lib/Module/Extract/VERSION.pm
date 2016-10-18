@@ -159,6 +159,9 @@ brian d foy, C<< <bdfoy@cpan.org> >>
 I stole the some of this code from C<mldistwatch> in the PAUSE
 code by Andreas König, but I've moved most of it around.
 
+Andrey Starodubtsev added code to handle the v5.12 and v5.14
+C<package> syntax.
+
 =head1 COPYRIGHT AND LICENSE
 
 Copyright © 2008-2016, brian d foy C<< <bdfoy@cpan.org> >>. All rights reserved.
