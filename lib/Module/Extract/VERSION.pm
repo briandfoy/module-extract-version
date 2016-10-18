@@ -157,7 +157,7 @@ This code is in Github:
 brian d foy, C<< <bdfoy@cpan.org> >>
 
 I stole the some of this code from C<mldistwatch> in the PAUSE
-code by Andreas KE<ouml>nig, but I've moved most of it around.
+code by Andreas König, but I've moved most of it around.
 
 =head1 COPYRIGHT AND LICENSE
 
