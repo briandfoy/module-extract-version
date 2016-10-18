@@ -166,7 +166,7 @@ C<package> syntax.
 
 Copyright © 2008-2016, brian d foy C<< <bdfoy@cpan.org> >>. All rights reserved.
 
-You may redistribute this under the same terms as Perl itself.
+You may redistribute this under the Artistic License 2.0.
 
 =cut
 
