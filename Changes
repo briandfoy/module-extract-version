@@ -1,5 +1,10 @@
 Revision history for Perl module Module::Extract::Version
 
+1.111 2016-10-18T01:54:39Z
+	* Support v5.12 and v5.14 PACKAGE NAMESPACE VERSION BLOCK
+	* Andrey Starodubtsev contributed the changes as part of 
+	Hacktoberfest.
+
 1.01 - 2011-04-26
 	* Bump to a full release version. The module isn't going to
 	change that much now.
