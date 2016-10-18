@@ -161,7 +161,7 @@ code by Andreas König, but I've moved most of it around.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright © 2008-2015, brian d foy <bdfoy@cpan.org>. All rights reserved.
+Copyright © 2008-2016, brian d foy C<< <bdfoy@cpan.org> >>. All rights reserved.
 
 You may redistribute this under the same terms as Perl itself.
 
