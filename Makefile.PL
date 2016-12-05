@@ -82,6 +82,9 @@ my %WriteMakefile = (
 				},
 			homepage => $github,
 			},
+		no_index => {
+			dir: [ "corpus", "t" ],
+			},
 		},
 
 	clean => { FILES => "$dist-*" },
