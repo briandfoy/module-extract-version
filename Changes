@@ -1,5 +1,9 @@
 Revision history for Perl module Module::Extract::Version
 
+1.112 2016-12-05T19:39:04Z
+	* Remove prereq.t test. I'll do that locally.
+	* Hide some packages from PAUSE.
+
 1.111 2016-10-18T01:54:39Z
 	* Support v5.12 and v5.14 PACKAGE NAMESPACE VERSION BLOCK
 	* Andrey Starodubtsev contributed the changes as part of 
