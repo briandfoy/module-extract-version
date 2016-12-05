@@ -83,7 +83,7 @@ my %WriteMakefile = (
 			homepage => $github,
 			},
 		no_index => {
-			dir: [ "corpus", "t" ],
+			dir => [ "corpus", "t" ],
 			},
 		},
 
