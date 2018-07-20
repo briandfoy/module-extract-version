@@ -13,7 +13,7 @@ for any Perl module.
 
 To read about L<Module::Extract::VERSION>, look at the embedded documentation 
 in the module itself. Inside the distribution, you can format it 
-with L<perldoc|http://perldoc.perl.org/perldoc.html>:
+with L<perldoc|https://perldoc.perl.orgperldoc.html>:
 
 	% perldoc lib/Module/Extract/VERSION.pm
 
@@ -24,13 +24,13 @@ name instead of the file location:
 
 You can read the documentation and inspect the meta data on one of the 
 CPAN web interfaces, such as L<CPAN Search|http://search.cpan.org/dist/Module-Extract-VERSION> or 
-L<MetaCPAN|http://www.metacpan.org/module/Module::Extract::VERSION>:
+L<MetaCPAN|https://metacpan.org/pod/Module::Extract::VERSION>:
 
 =over 4
 
 =item *	L<http://search.cpan.org/dist/Module-Extract-VERSION>
 
-=item *	L<http://www.metacpan.org/module/Module::Extract::VERSION>
+=item *	L<https://metacpan.org/pod/Module::Extract::VERSION>
 
 =back
 
