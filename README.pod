@@ -2,6 +2,14 @@
 
 =encoding utf8
 
+=for HTML <a href='https://ci.appveyor.com/project/briandfoy/module-extract-version'><img src='https://ci.appveyor.com/api/projects/status/a' /></a>
+
+=for HTML <a href='https://coveralls.io/github/briandfoy/module-extract-version?branch=master'><img src='https://coveralls.io/repos/github/briandfoy/module-extract-version/badge.svg?branch=master' alt='Coverage Status' /></a>
+
+=for HTML <a href="https://github.com/briandfoy/module-extract-version/blob/master/LICENSE"><img src="https://img.shields.io/cpan/l/Module-Extract-Version.svg" /></a>
+
+=for HTML <a href="https://metacpan.org/pod/Module::Extract::VERSION"><img src="https://img.shields.io/cpan/v/Module-Extract-Version.svg" /></A>
+
 =head1 The Module::Extract::VERSION module
 
 This is the I<README> for the L<Module::Extract::VERSION> Perl module. You're probably
