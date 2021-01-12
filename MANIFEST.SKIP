@@ -71,3 +71,6 @@
 \.releaserc
 \.lwpcookies
 
+\bMANIFEST\s\d
+\bChanges\s\d
+
