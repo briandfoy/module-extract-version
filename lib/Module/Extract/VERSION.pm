@@ -149,7 +149,7 @@ sub _eval_version {
 
 This code is in Github:
 
-	git://github.com/briandfoy/module-extract-version.git
+	https://github.com/briandfoy/module-extract-version.git
 
 =head1 AUTHOR
 
