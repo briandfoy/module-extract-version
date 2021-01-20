@@ -6,11 +6,9 @@ use strict;
 use warnings;
 no warnings;
 
-use vars qw($VERSION);
-
 use Carp qw(carp);
 
-$VERSION = '1.113';
+our $VERSION = '1.113';
 
 =encoding utf8
 
