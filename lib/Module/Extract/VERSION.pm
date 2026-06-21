@@ -57,6 +57,35 @@ context, it returns the list of:
 =cut
 
 sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
+my( $version_pattern, $package_block_pattern);
+
+BEGIN {
+$version_pattern = qr/
+	(?<sigil>
+		[\$*]
+	)
+	(?<var>
+		(?<package>
+			[\w\:\']*
+		)
+		\b
+		VERSION
+	)
+	\b
+	.*?
+	\=
+	(?<rhs>
+		.*
+	)
+	/x;
+
+$package_block_pattern = qr/
+	\b package \s+
+	(?<package> \w[\w\:\']* ) \s+
+	(?<rhs> \S+ ) \s* [;{]
+	/x;
+}
+
 	my( $class, $file ) = @_;
 
 	local $/ = "\n";
@@ -79,29 +108,7 @@ sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 		# package NAMESPACE VERSION  <-- we handle that
 		# package NAMESPACE VERSION BLOCK
 
-		next unless /
-			(?<sigil>
-				[\$*]
-			)
-			(?<var>
-				(?<package>
-					[\w\:\']*
-				)
-				\b
-				VERSION
-			)
-			\b
-			.*?
-			\=
-			(?<rhs>
-				.*
-			)
-			/x ||
-			m/
-			\b package \s+
-			(?<package> \w[\w\:\']* ) \s+
-			(?<rhs> \S+ ) \s* [;{]
-			/x;
+		next unless( m/$version_pattern/ || m/$package_block_pattern/ );
 		( $sigil, $var, $rhs ) = @+{ qw(sigil var rhs) };
 
 		if ($sigil) {
