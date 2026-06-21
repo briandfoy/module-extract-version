@@ -131,10 +131,15 @@ sub _eval_version {
 
 	my $s = Safe->new;
 
-if (defined $Devel::Cover::VERSION) {
+	if( $rhs =~ m/\h* qv \( \h* (['"]) ([0-9.]+) \1 \h* \)/x ) {
+		$rhs = qq('$2');
+		}
+	if( defined $Devel::Cover::VERSION ) {
 		$s->share_from('main', ['&Devel::Cover::use_file']);
-	}
-	$s->reval('$VERSION = ' . $rhs);
+		}
+
+	my $command = '$VERSION = ' . $rhs;
+	$s->reval($command);
 	my $version = $s->reval('$VERSION');
 
 	return $version;
