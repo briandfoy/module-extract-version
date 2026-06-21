@@ -1,4 +1,5 @@
-require v5.10;
+use v5.10;
+use utf8;
 
 package Module::Extract::VERSION;
 use strict;
@@ -56,7 +57,6 @@ context, it returns the list of:
 
 =cut
 
-sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 my( $version_pattern, $package_block_pattern);
 
 BEGIN {
@@ -86,6 +86,7 @@ $package_block_pattern = qr/
 	/x;
 }
 
+sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 	my( $class, $file ) = @_;
 
 	local $/ = "\n";
@@ -99,7 +100,7 @@ $package_block_pattern = qr/
 
 	my $in_pod = 0;
 	my( $sigil, $var, $version, $line_number, $rhs );
-	while( <$fh> ) {
+	LINE: while( <$fh> ) {
 		$line_number++;
 		chomp;
 		$in_pod = /^=(?!cut)/ ? 1 : /^=cut/ ? 0 : $in_pod;
@@ -107,18 +108,18 @@ $package_block_pattern = qr/
 
 		# package NAMESPACE VERSION  <-- we handle that
 		# package NAMESPACE VERSION BLOCK
-
 		next unless( m/$version_pattern/ || m/$package_block_pattern/ );
+
 		( $sigil, $var, $rhs ) = @+{ qw(sigil var rhs) };
 
 		if ($sigil) {
 			$version = $class->_eval_version( $_, @+{ qw(sigil var rhs) } );
-		}
+			}
 		else {
 			$version = $class->_eval_version( $_, '$', 'VERSION', qq('$rhs') );
-		}
+			}
 
-		last;
+		last LINE;
 		}
 	$line_number = undef if eof($fh) && ! defined( $version );
 	close $fh;
@@ -133,7 +134,6 @@ sub _eval_version {
 	my( $class, $line, $sigil, $var, $rhs ) = @_;
 
 	require Safe;
-	require version;
 	local $^W = 0;
 
 	my $s = Safe->new;
