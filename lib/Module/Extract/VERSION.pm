@@ -8,7 +8,7 @@ no warnings;
 
 use Carp qw(carp);
 
-our $VERSION = '1.119';
+our $VERSION = '1.121';
 
 =encoding utf8
 
