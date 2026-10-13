@@ -143,12 +143,14 @@ sub _eval_version {
 		$rhs = qq('$2');
 		}
 	elsif($rhs =~ m/version->declare\( \s* (['"]) v? (?<v>.+) \1 \s* \)/x ) {
-		$rhs = eval { sprintf q('%s'), version->declare($+{'v'}) };
+		$rhs = eval { sprintf q('%s'), version->declare("$+{'v'}") } or warn $@;
 		}
 
 	if( defined $Devel::Cover::VERSION ) {
 		$s->share_from('main', ['&Devel::Cover::use_file']);
 		}
+
+	print STDERR "RHS: <$rhs>\n";
 
 	my $command = '$VERSION = ' . $rhs;
 	$s->reval($command);
