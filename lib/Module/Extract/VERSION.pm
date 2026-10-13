@@ -127,15 +127,7 @@ sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 		# package NAMESPACE VERSION  <-- we handle that
 		# package NAMESPACE VERSION BLOCK
 
-		if( m/$version_declare_pattern/ ) {
-
-			}
-		elsif ( ) {
-
-			}
-		else { next }
-		next less(
-			m/$version_declare_pattern/ ||
+		next unless(
 			m/$version_pattern/         ||
 			m/$package_block_pattern/
 			);
@@ -166,7 +158,9 @@ sub _eval_version {
 	require Safe;
 	local $^W = 0;
 
-	my $s = Safe->new;
+	my $s = Safe->new();
+	state $rc = require version;
+	$s->share_from('main', [qw(&version::declare &version::qv &version::parse)]);
 
 	if( $rhs =~ m/\h* qv \( \h* (['"]) ([0-9.]+) \1 \h* \)/x ) {
 		$rhs = qq('$2');
@@ -177,7 +171,13 @@ sub _eval_version {
 
 	my $command = '$VERSION = ' . $rhs;
 	$s->reval($command);
+
 	my $version = $s->reval('$VERSION');
+
+	if( ref $version ) {
+		bless $version, 'version';
+		$version = "$version";
+		}
 
 	return $version;
 	}
