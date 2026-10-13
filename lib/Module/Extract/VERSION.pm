@@ -142,7 +142,7 @@ sub _eval_version {
 		$rhs = qq('$2');
 		}
 	elsif($rhs =~ m/version->declare\( (.+) \)/x ) {
-		$rhs = "$1";
+		$rhs = sprintf '%s', qv($1);
 		}
 
 	if( defined $Devel::Cover::VERSION ) {
