@@ -133,7 +133,8 @@ sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 sub _eval_version {
 	my( $class, $line, $sigil, $var, $rhs ) = @_;
 
-	require Safe;
+	state $rc = require Safe;
+	state $rc = require version;
 	local $^W = 0;
 
 	my $s = Safe->new;
@@ -141,8 +142,8 @@ sub _eval_version {
 	if( $rhs =~ m/\h* qv \( \h* (['"]) ([0-9.]+) \1 \h* \)/x ) {
 		$rhs = qq('$2');
 		}
-	elsif($rhs =~ m/version->declare\( (.+) \)/x ) {
-		$rhs = sprintf '%s', qv($1);
+	elsif($rhs =~ m/version->declare\( \s* (['"]) v? (?<v>.+) \1 \s* \)/x ) {
+		$rhs = eval { sprintf q('%s'), version->declare($+{'v'}) };
 		}
 
 	if( defined $Devel::Cover::VERSION ) {
