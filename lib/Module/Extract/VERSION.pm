@@ -141,6 +141,10 @@ sub _eval_version {
 	if( $rhs =~ m/\h* qv \( \h* (['"]) ([0-9.]+) \1 \h* \)/x ) {
 		$rhs = qq('$2');
 		}
+	elsif($rhs =~ m/version->declare\( (.+) \)/x ) {
+		$rhs = "$1";
+		}
+
 	if( defined $Devel::Cover::VERSION ) {
 		$s->share_from('main', ['&Devel::Cover::use_file']);
 		}
