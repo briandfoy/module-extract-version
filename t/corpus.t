@@ -39,7 +39,6 @@ foreach my $file ( sort keys %Corpus ) {
 		my $path = File::Spec->catfile( 'corpus', $file );
 		ok -e $path, "Corpus file <$path> exists";
 		my $version = eval{ $class->$method( $path ) };
-
 		is( $version, $Corpus{$file}, "Works for $file" );
 		};
 	}
