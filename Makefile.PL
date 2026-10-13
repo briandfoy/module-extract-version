@@ -83,7 +83,7 @@ my %WriteMakefile = (
 
 	'PREREQ_PM'     => {
 		'Tie::Hash::NamedCapture' => '0', # for named captures
-		'version'                 => '0',
+		'version'                 => '0.77',
 		},
 
 	'META_MERGE' => {
