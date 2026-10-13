@@ -57,7 +57,7 @@ context, it returns the list of:
 
 =cut
 
-my( $version_pattern, $package_block_pattern);
+my( $version_pattern, $package_block_pattern, $version_declare_pattern );
 
 BEGIN {
 $version_pattern = qr/
@@ -84,6 +84,24 @@ $package_block_pattern = qr/
 	(?<package> \w[\w\:\']* ) \s+
 	(?<rhs> \S+ ) \s* [;{]
 	/x;
+
+# use version; our $VERSION = version->declare(‘2.1.5’);
+$version_declare_pattern = qr/
+	(?<sigil>
+		[\$*]
+	)
+	(?<var>
+		(?<package>
+			[\w\:\']*
+		)
+		\b
+		VERSION
+	)
+
+	\s* = \s*
+
+	version->declare\( \s* (?<rhs>.+) \)
+	/x;
 }
 
 sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
@@ -108,7 +126,19 @@ sub parse_version_safely { # stolen from PAUSE's mldistwatch, but refactored
 
 		# package NAMESPACE VERSION  <-- we handle that
 		# package NAMESPACE VERSION BLOCK
-		next unless( m/$version_pattern/ || m/$package_block_pattern/ );
+
+		if( m/$version_declare_pattern/ ) {
+
+			}
+		elsif ( ) {
+
+			}
+		else { next }
+		next less(
+			m/$version_declare_pattern/ ||
+			m/$version_pattern/         ||
+			m/$package_block_pattern/
+			);
 
 		( $sigil, $var, $rhs ) = @+{ qw(sigil var rhs) };
 
