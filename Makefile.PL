@@ -61,7 +61,7 @@ my $github    = 'https://github.com/briandfoy/module-extract-version';
 my $main_file = catfile( 'lib', split /::/, "$module.pm" );
 
 my %WriteMakefile = (
-	'MIN_PERL_VERSION' => '5.010',
+	'MIN_PERL_VERSION' => '5.018',
 
 	'NAME'	        => $module,
 	'ABSTRACT_FROM' => $main_file,
@@ -82,6 +82,7 @@ my %WriteMakefile = (
 		},
 
 	'PREREQ_PM'     => {
+		'Safe'                    => '2.35',
 		'Tie::Hash::NamedCapture' => '0', # for named captures
 		'version'                 => '0',
 		},
