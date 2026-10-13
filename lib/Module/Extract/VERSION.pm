@@ -150,8 +150,6 @@ sub _eval_version {
 		$s->share_from('main', ['&Devel::Cover::use_file']);
 		}
 
-	print STDERR "RHS: <$rhs>\n";
-
 	my $command = '$VERSION = ' . $rhs;
 	$s->reval($command);
 	my $version = $s->reval('$VERSION');
