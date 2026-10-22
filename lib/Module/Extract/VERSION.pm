@@ -142,7 +142,7 @@ sub _eval_version {
 	if( $rhs =~ m/\h* qv \( \h* (['"]) ([0-9.]+) \1 \h* \)/x ) {
 		$rhs = qq('$2');
 		}
-	elsif($rhs =~ m/version->declare\( \s* (['"]) v? (?<v>.+) \1 \s* \)/x ) {
+	elsif($rhs =~ m/version->declare\( \s* (['"]) (?<v>v?.+) \1 \s* \)/x ) {
 		$rhs = eval { sprintf q('%s'), version->declare("$+{'v'}") };
 		}
 

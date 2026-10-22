@@ -17,7 +17,7 @@ my %Corpus = (
 	'QV_single.pm'   => '8.5.2',
 	'QV_double.pm'   => '73.8.5552',
 	'version-declare.pm'   => '2.1.5',
-	'version-declare-v.pm'   => '1.3.7',
+	'version-declare-v.pm'   => 'v1.3.7',
 	);
 
 if( $] >= 5.012 ) {
