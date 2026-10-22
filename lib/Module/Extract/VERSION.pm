@@ -169,7 +169,7 @@ This code is in Github:
 
 brian d foy, C<< <briandfoy@pobox.com> >>
 
-I stole the some of this code from C<mldistwatch> in the PAUSE
+I stole some of this code from C<mldistwatch> in the PAUSE
 code by Andreas König, but I've moved most of it around.
 
 Andrey Starodubtsev added code to handle the v5.12 and v5.14
