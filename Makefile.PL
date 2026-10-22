@@ -82,6 +82,7 @@ my %WriteMakefile = (
 		},
 
 	'PREREQ_PM'     => {
+		'Safe'                    => '0',
 		'Tie::Hash::NamedCapture' => '0', # for named captures
 		'version'                 => '0.77',
 		},
